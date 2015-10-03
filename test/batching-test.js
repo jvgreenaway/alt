@@ -9,16 +9,16 @@ const { TestUtils } = React.addons
 const Actions = {
   buttonClick() {
     setTimeout(() => {
-      this.actions.switchComponent()
+      this.switchComponent()
     }, 10)
   },
 
   switchComponent() {
-    this.dispatch()
+    return;;
   },
 
   uhoh() {
-    this.dispatch()
+    return;;
   }
 }
 
@@ -90,7 +90,7 @@ export default {
       }
 
       TestUtils.renderIntoDocument(<ComponentA alt={alt} callback={test} />)
-      alt.actions.actions.buttonClick()
+      alt.actions.buttonClick()
     },
 
     'allows batching'(done) {
