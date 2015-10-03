@@ -14,11 +14,11 @@ const Actions = {
   },
 
   switchComponent() {
-    return;;
+    return null
   },
 
   uhoh() {
-    return;;
+    return null
   }
 }
 
@@ -90,7 +90,7 @@ export default {
       }
 
       TestUtils.renderIntoDocument(<ComponentA alt={alt} callback={test} />)
-      alt.actions.buttonClick()
+      alt.actions.actions.buttonClick()
     },
 
     'allows batching'(done) {
