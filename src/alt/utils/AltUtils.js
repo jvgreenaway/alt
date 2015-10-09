@@ -18,6 +18,15 @@ export function getInternalMethods(Obj, isProto) {
   }, {})
 }
 
+export function getPrototypeChain(Obj, methods = {}) {
+  return Obj === Function.prototype
+    ? methods
+    : getInternalMethods2(
+        Object.getPrototypeOf(Obj),
+        fn.assign(methods, getInternalMethods(Obj, true))
+      )
+}
+
 export function warn(msg) {
   /* istanbul ignore else */
   /*eslint-disable*/
