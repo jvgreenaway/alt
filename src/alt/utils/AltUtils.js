@@ -21,7 +21,7 @@ export function getInternalMethods(Obj, isProto) {
 export function getPrototypeChain(Obj, methods = {}) {
   return Obj === Function.prototype
     ? methods
-    : getInternalMethods2(
+    : getPrototypeChain(
         Object.getPrototypeOf(Obj),
         fn.assign(methods, getInternalMethods(Obj, true))
       )
