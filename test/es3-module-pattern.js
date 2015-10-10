@@ -40,7 +40,7 @@ export default {
   'Creating store using ES3 module pattern': {
     beforeEach() {
       alt.recycle()
-      console.warn = function () { }
+      console.error = function () { }
     },
 
     'store method exists'() {

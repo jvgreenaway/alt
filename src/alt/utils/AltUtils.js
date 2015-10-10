@@ -18,15 +18,6 @@ export function getInternalMethods(Obj, isProto) {
   }, {})
 }
 
-export function warn(msg) {
-  /* istanbul ignore else */
-  /*eslint-disable*/
-  if (typeof console !== 'undefined') {
-    console.warn(new ReferenceError(msg))
-  }
-  /*eslint-enable*/
-}
-
 export function uid(container, name) {
   let count = 0
   let key = name

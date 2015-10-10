@@ -6,6 +6,7 @@ import * as fn from '../utils/functions'
 import * as store from './store'
 import * as utils from './utils/AltUtils'
 import makeAction from './actions'
+import warning from 'warning'
 
 class Alt {
   constructor(config = {}) {
@@ -58,18 +59,15 @@ class Alt {
     /* istanbul ignore next */
     if (module.hot) delete this.stores[key]
 
-    if (this.stores[key] || !key) {
-      if (this.stores[key]) {
-        utils.warn(
-          `A store named ${key} already exists, double check your store ` +
-          `names or pass in your own custom identifier for each store`
-        )
-      } else {
-        utils.warn('Store name was not specified')
-      }
+    warning(
+      !this.stores.hasOwnProperty(key),
+      `A store named ${key} already exists, double check your store ` +
+        `names or pass in your own custom identifier for each store`
+    )
 
-      key = utils.uid(this.stores, key)
-    }
+    warning(key, 'Store name was not specified')
+
+    if (this.stores[key] || !key) key = utils.uid(this.stores, key)
 
     const storeInstance = fn.isFunction(Store)
       ? store.createStoreFromClass(this, Store, key, ...args)

@@ -7,10 +7,10 @@ const alt = new Alt()
 alt.createStore(function MyStore() { })
 
 export default {
-  'console warn for missing identifier': {
+  'console error for missing identifier': {
     beforeEach() {
-      console.warn = sinon.stub()
-      console.warn.returnsArg(0)
+      console.error = sinon.stub()
+      console.error.returnsArg(0)
     },
 
     'stores with colliding names'() {
@@ -20,7 +20,6 @@ export default {
       alt.createStore(MyStore)
 
       assert.isObject(alt.stores.MyStore1, 'a store was still created')
-
     },
 
     'colliding names via identifier'() {
@@ -37,8 +36,7 @@ export default {
     },
 
     afterEach() {
-      assert.ok(console.warn.calledOnce, 'the warning was called')
-      assert.instanceOf(console.warn.returnValues[0], ReferenceError, 'value returned is an instanceof referenceerror')
+      assert.ok(console.error.calledOnce, 'the erroring was called')
     },
   }
 }

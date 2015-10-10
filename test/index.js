@@ -365,7 +365,7 @@ NameStore.prototype.onUpdateName = function (name) {
 const nameStore1 = alt1.createStore(NameStore)
 const nameStore2 = alt2.createStore(NameStore)
 
-const consoleWarn = console.warn.bind(console)
+const consoleErr = console.error.bind(console)
 
 /* istanbul ignore next */
 const tests = {
@@ -374,7 +374,7 @@ const tests = {
     altInstance.recycle()
     alt1.recycle()
     alt2.recycle()
-    console.warn = consoleWarn
+    console.error = consoleErr
   },
 
   'alt instance'() {
