@@ -1,5 +1,6 @@
 import * as fn from '../../utils/functions'
 import * as utils from '../utils/AltUtils'
+import isPromise from 'is-promise'
 
 class AltAction {
   constructor(alt, id, action, actions, actionDetails) {
@@ -32,7 +33,7 @@ export default function makeAction(alt, namespace, name, implementation, obj) {
     newAction.dispatched = false
     const result = newAction._dispatch(...args)
     // async functions that return promises should not be dispatched
-    if (!newAction.dispatched && result !== undefined && !fn.isPromise(result)) {
+    if (!newAction.dispatched && result !== undefined && !isPromise(result)) {
       if (fn.isFunction(result)) {
         result(dispatch, alt)
       } else {
