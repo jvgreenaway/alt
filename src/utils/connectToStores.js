@@ -94,6 +94,10 @@ function connectToStores(Spec, Component = Spec) {
   if (Component.contextTypes) {
     StoreConnection.contextTypes = Component.contextTypes
   }
+  // Keep fetchData static
+  if (Component.fetchData) {
+    StoreConnection.fetchData = Component.fetchData
+  }
 
   return StoreConnection
 }
